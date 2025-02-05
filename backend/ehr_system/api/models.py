@@ -15,6 +15,7 @@ class Patient(models.Model):
 
 class MedicalRecord(models.Model):
     patient=models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='record')
+    record_id=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     diagnosis=models.CharField()
     treatment=models.CharField()
     created_on=models.DateTimeField(auto_now_add=True)
