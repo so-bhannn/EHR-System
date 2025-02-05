@@ -15,9 +15,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from rest_framework.permissions import AllowAny
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title= 'EHR API',
+        default_version='v1',
+        description='Electronic Health Records System'
+    ),
+    public= True,
+    permission_classes= (AllowAny,)
+)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
+    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name= 'schema-swagger-ui'),
 ]
