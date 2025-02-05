@@ -3,9 +3,13 @@ import uuid
 
 # Create your models here.
 class Patient(models.Model):
+    GENDER_CHOICES=[
+        ('M', 'Male'),
+        ('F', 'Female')
+    ]
     name = models.CharField(max_length=100)
     age = models.IntegerField()
-    gender = models.Choices('Male','Female')
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICES, default=None)
     contact = models.IntegerField()
     patient_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     medical_history = models.TextField(null=True, blank=True)
