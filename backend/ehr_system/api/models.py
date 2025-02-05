@@ -16,8 +16,8 @@ class Patient(models.Model):
 class MedicalRecord(models.Model):
     patient=models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='record')
     record_id=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
-    diagnosis=models.CharField()
-    treatment=models.CharField()
+    diagnosis=models.CharField(max_length=100)
+    treatment=models.CharField(max_length=100)
     created_on=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
