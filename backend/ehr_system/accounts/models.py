@@ -35,3 +35,19 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    
+class Patient(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    patient_id = models.CharField(max_length=20, unique=True)
+    medical_record = models.TextField()
+
+    def __str__(self):
+        return f"Patient: {self.user.name}"
+
+class Doctor(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    doctor_id = models.CharField(max_length=20, unique=True)
+    speciality = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"Doctor: {self.user.name}"

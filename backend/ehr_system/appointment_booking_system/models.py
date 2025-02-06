@@ -1,5 +1,5 @@
 from django.db import models
-from api.models import Patient,Doctor
+from accounts.models import Patient,Doctor
 import uuid
 
 # Create your models here.
