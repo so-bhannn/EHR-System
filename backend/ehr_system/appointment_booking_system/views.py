@@ -1,4 +1,5 @@
 from django.db import transaction
+from django.core.cache import cache
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
@@ -114,6 +115,13 @@ def cancel_appointment(request, appointment_id):
 @api_view(['GET'])
 async def list_available_slots(request, doctor_id):
     from django.db import connection
+    cache_key = f'available_slots_{doctor_id}'
+    cached_data = cache.get(cache_key)
+    if cached_data:
+        return Response(
+            cached_data,
+            status=status.HTTP_200_OK
+        )
     try:
         available_slots = await Slot.objects.filter(
             doctor_id=doctor_id,
