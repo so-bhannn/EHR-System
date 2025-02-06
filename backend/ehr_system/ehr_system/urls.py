@@ -33,5 +33,6 @@ from django.urls import path,include,re_path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
+    path('booking/', include('appointment_booking_system.urls'))
     #re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
