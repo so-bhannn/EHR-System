@@ -2,6 +2,8 @@ from django.urls import path
 from .views import *
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+app_name='api'
+
 urlpatterns = [
     path('register-patient/', register_patient, name='register-patient' ),
     path('create-record/', create_medical_record, name='create-record' ),

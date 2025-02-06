@@ -1,15 +1,8 @@
 from django.db import models
-from api.models import Patient
+from api.models import Patient,Doctor
 import uuid
 
 # Create your models here.
-
-class Doctor(models.Model):
-    name=models.CharField(max_length=30)
-    doctor_id=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
-    speciality=models.CharField(max_length=30)
-    contact=models.IntegerField()
-
 class Slot(models.Model):
     doctor=models.ForeignKey(Doctor, on_delete=models.CASCADE)
     start_time=models.DateTimeField()
