@@ -10,7 +10,7 @@ class Patient(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES, default=None)
-    contact = models.IntegerField()
+    contact = models.EmailField()
     patient_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     medical_history = models.TextField(null=True, blank=True)
 
