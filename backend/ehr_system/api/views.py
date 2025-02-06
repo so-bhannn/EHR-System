@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .serializers import PatientSerializer, MedicalRecordSerializer
+from accounts.serializers import PatientSerializer
+from .serializers import MedicalRecordSerializer
 from .models import Patient, MedicalRecord
 from rest_framework import status
 from rest_framework.response import Response
