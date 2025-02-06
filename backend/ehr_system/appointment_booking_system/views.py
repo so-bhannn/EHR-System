@@ -110,3 +110,23 @@ def cancel_appointment(request, appointment_id):
             {'error': 'Invalid appointment ID'},
             status=status.HTTP_404_NOT_FOUND
         )
+    
+@api_view(['GET'])
+async def list_available_slots(request, doctor_id):
+    from django.db import connection
+    try:
+        available_slots = await Slot.objects.filter(
+            doctor_id=doctor_id,
+            is_booked=False
+        ).order_by('start_time').alist()
+        
+        return Response(
+            SlotSerializer(available_slots, many=True).data,
+            status=status.HTTP_200_OK
+        )
+        
+    except Exception as e:
+        return Response(
+            {'error': str(e)},
+            status=status.HTTP_400_BAD_REQUEST
+        )
