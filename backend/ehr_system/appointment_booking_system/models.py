@@ -28,13 +28,14 @@ class Slot(models.Model):
         return f"Slot for {self.doctor} from {self.start_time} to {self.end_time}"
 
 
-class Booking(models.Model):
+class Appointment(models.Model):
     STATUS_CHOICES=[
         ('BOOKED', 'booked'),
         ('CANCELLED', 'cancelled'),
         ('RESCHEDULED','rescheduled'),
         ('COMPLETED', 'completed'),
     ]
+    id=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     patient=models.ForeignKey(Patient, on_delete=models.CASCADE)
     doctor=models.ForeignKey(Doctor, on_delete=models.CASCADE)
     slot=models.OneToOneField(Slot, on_delete=models.CASCADE)
