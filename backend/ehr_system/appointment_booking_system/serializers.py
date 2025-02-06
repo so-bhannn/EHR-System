@@ -1,12 +1,16 @@
 from rest_framework import serializers
-from .models import Slot, Booking
+from .models import Slot, Booking,Doctor
 
-class SlotSerializer(serializers.Serializer):
+class DoctorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Doctor
+        fields='__all__'
+class SlotSerializer(serializers.ModelSerializer):
     class Meta:
         model=Slot
-        fields=[all]
+        fields='__all__'
 
-class BookingSerializer(serializers.Serializer):
+class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model= Booking
-        fields = [all]
+        fields = '__all__'
