@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { viewRecords } from '../api';
+import { viewRecords } from '../services/api';
 
 const ViewRecord = () => {
   const [patientId, setPatientId] = useState('');

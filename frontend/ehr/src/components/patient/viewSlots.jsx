@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { listAvailableSlots } from '../api';
+import { listAvailableSlots } from '../services/api';
 
 const ViewSlots = () => {
   const [doctorId, setDoctorId] = useState('');

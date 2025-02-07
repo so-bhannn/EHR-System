@@ -100,3 +100,12 @@ export const listAvailableSlots = async (doctorId) => {
     throw new Error('Failed to fetch slots');
   }
 }
+
+export const bookAppointment = async (slotDetails) => {
+  try {
+    const response = await apiClient.post('/booking/book/', slotDetails);
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to book slot');
+  }
+}
