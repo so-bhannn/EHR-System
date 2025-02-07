@@ -118,3 +118,12 @@ export const rescheduleAppointment = async (appointmentId, slotDetails) => {
     throw new Error('Failed to reschedule appointment');
   }
 }
+
+export const cancelAppointment = async (appointmentId) => {
+  try {
+    const response = await apiClient.delete(`/booking/cancel/${appointmentId}/`);
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to cancel appointment');
+  }
+}
