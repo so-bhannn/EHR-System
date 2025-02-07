@@ -7,7 +7,7 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'name', 'age', 'gender', 'password']
+        fields = ['email', 'name', 'age', 'gender', 'password','is_doctor','is_patient']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -24,7 +24,7 @@ class PatientSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user_data = validated_data.pop('user')
         user = UserSerializer.create(UserSerializer(), validated_data=user_data)
-        patient = Patient.objects.create(user=user, **validated_data)
+        patient = Patient.objects.create(user=user, **validated_data, is_patient=True)
         return patient
 
 class DoctorSerializer(serializers.ModelSerializer):
@@ -37,5 +37,5 @@ class DoctorSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user_data = validated_data.pop('user')
         user = UserSerializer.create(UserSerializer(), validated_data=user_data)
-        doctor = Doctor.objects.create(user=user, **validated_data)
+        doctor = Doctor.objects.create(user=user, **validated_data, is_doctor=True)
         return doctor

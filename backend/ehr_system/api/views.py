@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from accounts.serializers import PatientSerializer
+from accounts.serializers import PatientSerializer,DoctorSerializer
 from .serializers import MedicalRecordSerializer
 from .models import Patient, MedicalRecord
 from rest_framework import status
@@ -16,6 +16,16 @@ from rest_framework_simplejwt.tokens import RefreshToken
 @swagger_auto_schema(request_body=PatientSerializer)
 def register_patient(request):
     serializer=PatientSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+@swagger_auto_schema(request_body=PatientSerializer)
+def register_doctor(request):
+    serializer=DoctorSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
