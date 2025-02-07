@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { registerPatient } from '../services/api';
+import { registerDoctor } from '../services/api';
 
-const RegisterPatient = () => {
+const RegisterDoctor = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,7 +16,7 @@ const RegisterPatient = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await registerPatient(formData);
+    await registerDoctor(formData);
   };
 
   return (
@@ -79,4 +79,4 @@ const RegisterPatient = () => {
   );
 };
 
-export default RegisterPatient;
+export default RegisterDoctor;
