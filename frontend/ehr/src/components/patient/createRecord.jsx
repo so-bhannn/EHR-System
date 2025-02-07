@@ -1,25 +1,17 @@
 import React, { useState } from 'react';
+import { createRecord } from '../api';
 
 const CreateRecord = () => {
   const [patientId, setPatientId] = useState('');
-  const [diagnosticDetails, setDiagnosticDetails] = useState('');
+  const [diagnosisDetails, setDiagnosisDetails] = useState('');
   const [treatmentDetails, setTreatmentDetails] = useState('');
 
   const handleCreateRecord = async () => {
-    const token = localStorage.getItem('token');
-    const response = await fetch('http://localhost:8000/api/create-record/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-      body: JSON.stringify({ patient_id: patientId, details: recordDetails }),
-    });
-    const data = await response.json();
-    if (response.ok) {
+    try {
+      await createRecord(patientId, recordDetails);
       alert('Record created successfully');
-    } else {
-      alert('Failed to create record');
+    } catch (error) {
+      alert(error.message);
     }
   };
 
@@ -35,9 +27,9 @@ const CreateRecord = () => {
           className="w-full p-2 border rounded mb-4"
         />
         <textarea
-          placeholder="Diagnostic Details"
-          value={diagnosticDetails}
-          onChange={(e) => setDiagnosticDetails(e.target.value)}
+          placeholder="Diagnosis Details"
+          value={diagnosisDetails}
+          onChange={(e) => setDiagnosisDetails(e.target.value)}
           className="w-full p-2 border rounded mb-4"
         />
         <textarea
