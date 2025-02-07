@@ -55,3 +55,12 @@ export const viewRecords = async (patientId) => {
     throw new Error('Failed to fetch records');
   }
 };
+
+export const updateRecord = async (recordId, recordDetails) => {
+  try {
+    const response = await apiClient.put(`/api/update-record/${recordId}/`, recordDetails);
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to update record');
+  }
+}
