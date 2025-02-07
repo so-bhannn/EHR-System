@@ -3,11 +3,12 @@ import { updateRecord } from '../api';
 
 const  UpdateRecord = () => {
     const [recordId, setRecordId] = useState('');
-    const [recordDetails, setRecordDetails] = useState('');
+    const [diagnosisDetails, setDiagnosisDetails] = useState('');
+    const [treatmentDetails, setTreatmentDetails] = useState('');
     
     const handleUpdateRecord = async () => {
         try {
-        await updateRecord(recordId, recordDetails);
+        await updateRecord(recordId, diagnosisDetails, treatmentDetails);
         alert('Record updated successfully');
         } catch (error) {
         alert(error.message);
@@ -26,10 +27,16 @@ const  UpdateRecord = () => {
             className="w-full p-2 border rounded mb-4"
             />
             <textarea
-            placeholder="Record Details"
-            value={recordDetails}
-            onChange={(e) => setRecordDetails(e.target.value)}
-            className="w-full p-2 border rounded mb-4"
+              placeholder="Diagnosis Details"
+              value={diagnosisDetails}
+              onChange={(e) => setDiagnosisDetails(e.target.value)}
+              className="w-full p-2 border rounded mb-4"
+            />
+            <textarea
+              placeholder="Treatment Details"
+              value={treatmentDetails}
+              onChange={(e) => setTreatmentDetails(e.target.value)}
+              className="w-full p-2 border rounded mb-4"
             />
             <button
             onClick={handleUpdateRecord}

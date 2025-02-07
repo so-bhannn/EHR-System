@@ -64,3 +64,12 @@ export const updateRecord = async (recordId, recordDetails) => {
     throw new Error('Failed to update record');
   }
 }
+
+export const deleteRecord = async (recordId) => {
+  try {
+    const response = await apiClient.delete(`/api/delete-record/${recordId}/`);
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to delete record');
+  }
+}

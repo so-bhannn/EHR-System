@@ -8,7 +8,7 @@ const CreateRecord = () => {
 
   const handleCreateRecord = async () => {
     try {
-      await createRecord(patientId, recordDetails);
+      await createRecord(patientId, diagnosisDetails, treatmentDetails);
       alert('Record created successfully');
     } catch (error) {
       alert(error.message);
