@@ -92,3 +92,11 @@ export const deleteRecord = async (recordId) => {
   }
 }
 
+export const listAvailableSlots = async (doctorId) => {
+  try {
+    const response = await apiClient.get(`/booking/slots/${doctorId}/`);
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to fetch slots');
+  }
+}
