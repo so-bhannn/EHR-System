@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://localhost:8000';
+const BASE_URL = 'https://localhost:8000';
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
@@ -26,14 +26,32 @@ export const registerPatient = async (patientDetails) => {
   }
 };
 
+export const registerDoctor = async (doctorDetails) => {
+  try {
+    const response = await apiClient.post('/api/register-doctor/', doctorDetails);
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to register doctor');
+  }
+};
+
 export const login = async (credentials) => {
   try {
-    const response = await apiClient.post('/api/login/', credentials);
+    const response = await apiClient.post('/accounts/login/', credentials);
     return response.data;
   } catch (error) {
     throw new Error('Failed to login');
   }
 };
+
+export const logout = async () => {
+  try {
+    const response = await apiClient.post('/accounts/logout/');
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to logout');
+  }
+}
 
 export const createRecord = async (patientId, recordDetails) => {
   try {
@@ -73,3 +91,4 @@ export const deleteRecord = async (recordId) => {
     throw new Error('Failed to delete record');
   }
 }
+
