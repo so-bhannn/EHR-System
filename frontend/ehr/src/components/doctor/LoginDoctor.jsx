@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { login } from '../services/api';
+import { login } from '../../services/api';
 
-const Login = () => {
+const LoginDoctor = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -18,9 +18,8 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <h2 className='text-2xl font-bold mb-6 text-center'>Patient Login</h2>
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-bold mb-4 text-center">Patient Login</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">Doctor Login</h2>
         <div className="mb-4">
           <label className="block text-gray-700">Email</label>
           <input
@@ -49,4 +48,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginDoctor;

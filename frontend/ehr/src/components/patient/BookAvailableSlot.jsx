@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { listAvailableSlots, bookAppointment } from '../services/api';
+import { listAvailableSlots, bookAppointment } from '../../services/api';
 
-const BookAvailableSlots = () => {
+const BookAvailableSlot = () => {
   const [doctorId, setDoctorId] = useState('');
   const [slots, setSlots] = useState([]);
   const [selectedSlot, setSelectedSlot] = useState(null);
@@ -79,4 +79,4 @@ const BookAvailableSlots = () => {
   );
 };
 
-export default BookAvailableSlots;
+export default BookAvailableSlot;

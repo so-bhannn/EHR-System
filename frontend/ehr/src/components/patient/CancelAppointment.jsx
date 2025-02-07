@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { cancelAppointment } from '../services/api';
+import { cancelAppointment } from '../../services/api';
 
 const CancelAppointment = () => {
   const [appointmentId, setAppointmentId] = useState('');

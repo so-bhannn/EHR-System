@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { updateRecord } from '../services/api';
+import { updateRecord } from '../../services/api';
 
 const  UpdateRecord = () => {
     const [recordId, setRecordId] = useState('');

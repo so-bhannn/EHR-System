@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { rescheduleAppointment, listAvailableSlots } from '../services/api';
+import { rescheduleAppointment, listAvailableSlots } from '../../services/api';
 
 const RescheduleAppointment = () => {
   const [appointmentId, setAppointmentId] = useState('');
