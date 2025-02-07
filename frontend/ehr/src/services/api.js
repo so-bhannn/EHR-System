@@ -109,3 +109,12 @@ export const bookAppointment = async (slotDetails) => {
     throw new Error('Failed to book slot');
   }
 }
+
+export const rescheduleAppointment = async (appointmentId, slotDetails) => {
+  try {
+    const response = await apiClient.put(`/booking/reschedule/${appointmentId}/`, slotDetails);
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to reschedule appointment');
+  }
+}
