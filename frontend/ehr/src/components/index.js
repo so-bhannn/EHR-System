@@ -1,3 +1,4 @@
+import Home from './Home';
 import RegisterDoctor from './doctor/RegisterDoctor';
 import LoginDoctor from './doctor/LoginDoctor';
 import CreateRecord from './doctor/CreateRecord';
@@ -12,7 +13,8 @@ import CancelAppointment from './patient/CancelAppointment';
 import Logout from './Logout';
 
 
-export {RegisterDoctor,
+export {Home,
+        RegisterDoctor,
         LoginDoctor,
         CreateRecord,
         UpdateRecord,

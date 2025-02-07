@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { RegisterDoctor,
+import { Home,
+         RegisterDoctor,
          LoginDoctor,
          CreateRecord,
          UpdateRecord,
@@ -21,6 +22,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/register-doctor" element={<RegisterDoctor />} />
           <Route path="/login-doctor" element={<LoginDoctor />} />
           <Route path="/create-record" element={<CreateRecord />} />
