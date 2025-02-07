@@ -1,23 +1,17 @@
 import React, { useState } from 'react';
+import { viewRecords } from '../api';
 
 const ViewRecord = () => {
   const [patientId, setPatientId] = useState('');
-  const [records, setRecords] = useState([]);
-
+  const [diagnosisDetails, setDiagnosisDetails] = useState('');
+  const [treatmentDetails, setTreatmentDetails] = useState('');
   const handleViewRecord = async () => {
-    const token = localStorage.getItem('token');
-    const response = await fetch(`http://localhost:8000/api/views-records/${patientId}/`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    });
-    if (response.ok) {
-      const data = await response.json();
-      setRecords(data);
-    } else {
-      alert('Failed to fetch records');
+    try {
+      const records = await viewRecords(patientId);
+      setDiagnosisDetails(records.diagnosis);
+      setTreatmentDetails(records.treatment);
+    } catch (error) {
+      alert(error.message);
     }
   };
 
@@ -38,13 +32,27 @@ const ViewRecord = () => {
         >
           View Records
         </button>
-        {records.length > 0 ? (
+        {diagnosisDetails.length > 0 ? (
           <div>
             <h3 className="text-xl font-bold mb-2">Records:</h3>
             <ul>
-              {records.map((record, index) => (
+              {diagnosisDetails.map((diagnosis, index) => (
                 <li key={index} className="border-b py-2">
-                  {record.details}
+                  {diagnosis.details}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p>No records found.</p>
+        )}
+        {treatmentDetails.length > 0 ? (
+          <div>
+            <h3 className="text-xl font-bold mb-2">Records:</h3>
+            <ul>
+              {treatmentDetails.map((treatment, index) => (
+                <li key={index} className="border-b py-2">
+                  {treatment.details}
                 </li>
               ))}
             </ul>
